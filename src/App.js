@@ -8,7 +8,6 @@ import rootSaga from './Sagas';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(sagaMiddleware);
 sagaMiddleware.run(rootSaga);
-// create our store
 
 export default () => (
     <Provider store={store}>
