@@ -3,11 +3,14 @@ import { HomesTypes } from '../Redux/HomeRedux'
 
 
 export function * fetchNews(api, action) {
-    const { data } = action
-    const response = yield call(api.getRate, data)
+    const { page } = action
+    const response = yield call(api.getRate, page)
 
     console.log('response', response)
 
-    if (response.ok)
-    yield put({ type: HomesTypes.HOMES_SUCCESS, payload: response.data.articles[2].title});
+    if (response.ok && Array.isArray(response.data))
+    yield put({ type: HomesTypes.HOMES_SUCCESS, payload: response.data});
+    else {
+        yield put({ type: HomesTypes.HOMES_FAILURE});
+    }
 }

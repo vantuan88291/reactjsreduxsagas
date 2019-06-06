@@ -20,9 +20,45 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <link rel="stylesheet" id="bootstrap-css" href="http://cook.audition2.com/css/bootstrap.css" type="text/css" media="all">
+    <link rel="stylesheet" id="wp-bootstrap-css" href="http://cook.audition2.com/css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" id="font-awesome-styles-css" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css?ver=%203.5" type="text/css" media="all">
+    <link rel="stylesheet" id="bootstrap-responsive-css" href="http://cook.audition2.com/css/styleseo.css" type="text/css" media="all">
+    <script type='text/javascript' src="http://cook.audition2.com/js/jquery-1.7.1.min.js"></script>
+    <script type='text/javascript' src="http://cook.audition2.com/js/jquery.localScroll.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type='text/javascript' src="http://cook.audition2.com/js/cookie.js"></script>
+    <script type='text/javascript' src="http://cook.audition2.com/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#back-top").hide();
+
+            $(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('#back-top').fadeIn();
+                    } else {
+                        $('#back-top').fadeOut();
+                    }
+                });
+
+                $('#back-top a').click(function () {
+                    $('body,html').animate({
+                        scrollTop: 0
+                    }, 800);
+                    return false;
+                });
+            });
+
+        });
+    </script>
+    <style type="text/css">.ratemulti .starsbar .gdcurrent{-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=70);filter:alpha(opacity=70);}</style>
+    <style type="text/css">.recentcomments a{display:inline!important;margin:0!important;padding:0!important;}</style>
+    <style>h1,h2,h3,h4,h5,h6{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;}body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-weight:400;padding-top:0;}.navbar{position:static;}#main article{border-bottom:none;}</style>
+
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+  <body className="home blog">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.

@@ -17,31 +17,34 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
     data: null,
-    fetching: null,
+    fetching: false,
     payload: null,
-    error: 'abcd'
+    error: false
 })
 
 // request the data from an api
-export const request = (state, { data }) =>
-    state.merge({ error: 'test', data, payload: null })
+export const request = (state) => {
+    return state.merge({ fetching: true })
+}
 
 // successful api lookup
 export const success = (state, action) => {
     const { payload } = action
-    return state.merge({ error: payload })
+    let data = []
+    if (state.data != null) {
+        data = payload == null ? state.data : state.data.concat(payload)
+    }
+    return state.merge({ fetching: false, data: state.data != null ? data : payload })
 }
 
 // Something went wrong somewhere.
 export const failure = state =>
     state.merge({ fetching: false, error: true, payload: null })
-export const resetAll = state => INITIAL_STATE
 
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
     [Types.HOMES_REQUEST]: request,
     [Types.HOMES_SUCCESS]: success,
-    [Types.HOMES_FAILURE]: failure,
-    [Types.RESET_ALL]: resetAll
+    [Types.HOMES_FAILURE]: failure
 })
