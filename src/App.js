@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux'
 import createSagaMiddleware from 'redux-saga'
-import Layout from './Containter/Layout'
+import Layout from './Containter/Home/HomeScreen'
 import createStore from './Redux';
 import rootSaga from './Sagas';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";

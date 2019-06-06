@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {HomesTypes} from '../Redux/HomeRedux'
+import {HomesTypes} from '../../Redux/HomeRedux'
 import {Link} from 'react-router-dom';
-import Header from './Header'
-import ListContent from './ListContent'
+import Header from '../../Component/Header'
+import ListContent from './Component/ListContent'
 
-class Layout extends Component {
+class HomeScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -93,4 +93,4 @@ const mapStateToProps = (state, ownProps) => {
         data: state.home
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Layout)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

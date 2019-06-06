@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import CustomItem from './CustomItem'
-import '../App.css'
+import '../../../App.css'
 import Spinner from 'react-spinner-material'
 
 class ListContent extends Component {
