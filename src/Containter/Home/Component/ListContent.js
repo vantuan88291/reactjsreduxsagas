@@ -9,16 +9,18 @@ class ListContent extends Component {
             return (
                 <tbody>
                     {this.props.data.map((item) => {
-                        return <CustomItem key={item.idbv} item={item}/>
+                        return <CustomItem clickDelete={this.clickDelete} key={item.tit} item={item}/>
                     })}
                 </tbody>
             )
-
         } else {
             return (
                 null
             )
         }
+    }
+    clickDelete = (item) => {
+        this.props.showpopup(item)
     }
     render() {
         return (

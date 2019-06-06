@@ -4,15 +4,16 @@ import {HomesTypes} from '../../Redux/HomeRedux'
 import {Link} from 'react-router-dom';
 import Header from '../../Component/Header'
 import ListContent from './Component/ListContent'
+import CustomPopup from '../../Component/CustomPopup'
 
 class HomeScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            tex: this.getTime(),
             data: null,
-            page: 1
+            page: 1,
+            isPopup: false
         }
         this.input = React.createRef();
         this.handleScroll = this.handleScroll.bind(this);
@@ -29,6 +30,8 @@ class HomeScreen extends Component {
         return null
     }
     componentDidMount() {
+        this.setState({data: null})
+        this.props.resetAll()
         window.addEventListener("scroll", this.handleScroll);
         this.props.request(1)
         // this.timerID = setInterval(
@@ -57,7 +60,12 @@ class HomeScreen extends Component {
         let date = new Date()
         return `${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`
     }
-
+    clickClose = () => {
+        this.setState({isPopup: false})
+    }
+    clickShow = (item) => {
+        this.setState({isPopup: true})
+    }
     render() {
         return (
             <div>
@@ -66,11 +74,12 @@ class HomeScreen extends Component {
                 <div className="container-fluid">
                     <div id="content" className="clearfix row-fluid">
                         <div id="main" className="span9 clearfix" role="main">
-                            <ListContent data={this.state.data} loading={this.props.data.fetching}/>
+                            <ListContent showpopup={this.clickShow} data={this.state.data} loading={this.props.data.fetching}/>
                         </div>
                     </div>
                 </div>
             </div>
+                <CustomPopup show={this.state.isPopup} clickClose={this.clickClose} />
             </div>
         );
     }
@@ -85,7 +94,13 @@ const mapDispatchToProps = dispatch => {
                 page
             }
             dispatch(requestAction)
-        }
+        },
+        resetAll: () => {
+            let requestAction = {
+                type: HomesTypes.RESET_ALL,
+            }
+            dispatch(requestAction)
+        },
     }
 }
 const mapStateToProps = (state, ownProps) => {

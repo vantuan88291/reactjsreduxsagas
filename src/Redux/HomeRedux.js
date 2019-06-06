@@ -41,10 +41,12 @@ export const success = (state, action) => {
 export const failure = state =>
     state.merge({ fetching: false, error: true, payload: null })
 
+export const resetAll = state => INITIAL_STATE
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
     [Types.HOMES_REQUEST]: request,
     [Types.HOMES_SUCCESS]: success,
-    [Types.HOMES_FAILURE]: failure
+    [Types.HOMES_FAILURE]: failure,
+    [Types.RESET_ALL]: resetAll
 })

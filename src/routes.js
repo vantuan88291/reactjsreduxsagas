@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './Containter/Home/HomeScreen';
-import Screen2 from './Containter/Screen2';
+import DetailScreen from './Containter/Detail/DetailScreen';
 
 const routes = [
     {
@@ -9,9 +9,9 @@ const routes = [
         main : () => <Home />
     },
     {
-        path : '/scr2',
+        path : '/Detail',
         exact : false,
-        main : () => <Screen2 />
+        main : () => <DetailScreen />
     }
 ];
 
